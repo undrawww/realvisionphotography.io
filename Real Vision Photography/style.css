@@ -1,0 +1,528 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Kreon:wght@300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&family=Spectral+SC:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-top: 115px; /* Matches header height */
+}
+
+body {
+  min-height: 100vh;
+  background-color: #A61111;
+  font-family: 'Literata', serif;
+  overflow-x: hidden;
+}
+
+ul, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #7D0A0A;
+  font-family: 'Kreon', serif;
+  font-size: 20px;
+  transition: 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #E30909;
+}
+
+header {
+  position: sticky;
+  display: flex;
+  top: 0;
+  z-index: 3;
+  background-color: #fff;
+  height: 115px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+header.shrink {
+  height: 80px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  width: 150px;
+  transition: width 0.3s ease;
+}
+
+header.shrink .logo img {
+  width: 120px;
+}
+
+.navlist {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.navlink {
+  font-size: 20px;
+}
+
+header.shrink .navlink {
+  font-size: 18px;
+}
+
+.menu-toggle {
+  display: none;
+}
+
+.menu-bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  background-color: #7D0A0A;
+  transition: 0.3s ease-in-out;
+}
+
+.menu-toggle.active .menu-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .menu-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active .menu-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: opacity(50%);
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+body:has(.zoomed) .hero-image {
+  transform: scale(1.2);
+}
+
+.hero-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  width: 100%;
+  max-width: 800px;
+  padding: min(1em, .5%);
+  padding-right: 6%;
+  top: max(25%, 10em);
+  left: min(10%, 60px);
+  color: #fff;
+}
+
+.hero-text span {
+  font-weight: 700;
+  font-size: clamp(1.6rem, .8vw, 3.5rem);
+}
+
+.hero-text h1 {
+  font-weight: 700;
+  font-size: clamp(3.3rem, 2.8vw, 3.5rem);
+}
+
+.hero-text p {
+  font-weight: 400;
+  font-size: clamp(1rem, .9vw, 1rem);
+}
+
+.about-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 6rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 5rem;
+}
+
+.about-images {
+  display: flex;
+  justify-content: center;
+  max-width: 80vh;
+}
+
+.collage img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.about-content {
+  flex: 1 1 400px;
+  color: #fff;
+  font-family: 'Literata';
+}
+
+.tagline {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.about-content h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.captures {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-image: var(--img);
+  transition: background 0.5s ease 0s;  
+  position: relative;
+}
+
+.captures:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #A61111a9;
+  z-index: 0;
+}
+
+.content {
+  width: 100vmin;
+  height: 60vmin;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  justify-content: center;
+  background-size: cover;
+  background-position: center center;
+  background-image: var(--img);
+  transition: background 0.5s ease 0s;
+  max-width: 800px;
+  max-height: 800px;
+  box-shadow: 0 0 0vmin 1vmin #fff, 0 0 100vmin 1vmin #2c2c2c;
+  z-index: 0;
+  background-color: #fff;
+}
+
+.controls {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  flex-wrap: wrap;
+  position: absolute;
+}
+
+input[type=radio] {
+  display: none;
+}		
+
+label {
+  width: 50vw;
+  height: 100vh;
+  position: relative;
+  cursor: pointer;
+  opacity: 0.15;
+}
+
+label:hover {
+  opacity: 1;
+}
+
+input:first-child:checked ~ .content .controls label:first-child,
+input:last-of-type:checked ~ .content .controls label:last-of-type {
+  cursor: default;
+  opacity: 0.025;
+}
+
+#b2:checked ~ .content .controls label[for=b2], 
+#b3:checked ~ .content .controls label[for=b3], 
+#b4:checked ~ .content .controls label[for=b4], 
+#b5:checked ~ .content .controls label[for=b5], 
+#b6:checked ~ .content .controls label[for=b1],
+#b3:checked ~ .content .controls label[for=b1],
+#b4:checked ~ .content .controls label[for=b1],
+#b4:checked ~ .content .controls label[for=b2],
+#b5:checked ~ .content .controls label[for=b1],
+#b5:checked ~ .content .controls label[for=b2],
+#b5:checked ~ .content .controls label[for=b3],
+#b6:checked ~ .content .controls label[for=b1],
+#b6:checked ~ .content .controls label[for=b2],
+#b6:checked ~ .content .controls label[for=b3],
+#b6:checked ~ .content .controls label[for=b4] {
+  display: none;
+}
+
+label:before {
+  content: "";
+  position: absolute;
+  background: 
+    linear-gradient(30deg, #fff0 60%, #fff calc(60% + 1px)), 
+    linear-gradient(-30deg, #fff 40%, #fff0 calc(40% + 1px)), 
+    linear-gradient(-90deg, #fff0 70%, #fff calc(70% + 1px));
+  width: 6vmin;
+  height: 6vmin;
+  border-radius: 5px;
+  right: 7vmin;
+  top: calc(50% - 3vmin);
+}
+
+#b1:checked ~ .content .controls label[for=b1]:before,
+#b2:checked ~ .content .controls label[for=b1]:before,
+#b3:checked ~ .content .controls label[for=b2]:before,
+#b4:checked ~ .content .controls label[for=b3]:before,
+#b5:checked ~ .content .controls label[for=b4]:before,
+#b6:checked ~ .content .controls label[for=b5]:before {
+  left: 7vmin;
+  transform: rotate(180deg);
+}
+
+.captures:after {
+  content: "What We Capture";
+  position: absolute;
+  font-family: 'Spectral SC';
+  top: 6vh;
+  color: #fff;
+  font-size: 40px;
+  line-height: 45px;
+  transition: all 0.5s ease 0s;
+  text-shadow: 0px 1px 0 #000000d9;
+  text-align: center;
+  padding: 1vmin;
+  font-weight: 300;
+}
+
+.thumbnails {
+  position: absolute;
+  width: 100%;
+  bottom: 3vh;
+  text-align: center;
+  padding: 1vmin;
+}
+
+.thumbnails label {
+  position: relative;
+  width: 6vmin;
+  height: 5vmin;
+  display: inline-block;
+  margin-left: 1vw;
+  background-image: var(--img);
+  background-size: cover;
+  background-position: center;
+  opacity: 0.5;
+  border-radius: .5px;
+}
+
+.thumbnails label:before { 
+  display: none; 
+}
+
+.thumbnails label:hover { 
+  opacity: 1; 
+}
+
+.thumbnails label:first-child { 
+  margin-left: 0; 
+}
+
+#b1:checked ~ .content .thumbnails label[for=b1],
+#b2:checked ~ .content .thumbnails label[for=b2],
+#b3:checked ~ .content .thumbnails label[for=b3],
+#b4:checked ~ .content .thumbnails label[for=b4],
+#b5:checked ~ .content .thumbnails label[for=b5],
+#b6:checked ~ .content .thumbnails label[for=b6] {
+  opacity: 1;
+  box-shadow: 0 0 0.01vmin 0.5vmin #fff;
+}
+
+/* Image Sources */
+.captures:has(input#b1:checked), .thumbnails label[for=b1] { --img: url(Assets/shot1.jpg); }
+.captures:has(input#b2:checked), .thumbnails label[for=b2] { --img: url(Assets/shot2.jpg); }
+.captures:has(input#b3:checked), .thumbnails label[for=b3] { --img: url(Assets/shot4.jpg); }
+.captures:has(input#b4:checked), .thumbnails label[for=b4] { --img: url(Assets/shot5.jpg); }
+.captures:has(input#b5:checked), .thumbnails label[for=b5] { --img: url(Assets/shot6.jpg); }
+.captures:has(input#b6:checked), .thumbnails label[for=b6] { --img: url(Assets/shot7.jpg); }
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  header {
+    height: 100px;
+  }
+
+  a {
+    font-size: 18px;
+  }
+
+  .logo img {
+    width: 150px;
+  }
+
+  .hero-image {
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+    position: absolute;
+  }
+
+  .hero-text span {
+    font-size: 1.4rem;
+  }
+
+  .hero-text h1 {
+    font-size: 3.1rem;
+    margin-right: 10%;
+  }
+
+  .hero-text p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 80px;
+  }
+
+  header.shrink {
+    height: 80px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .navlist {
+    position: fixed;
+    left: -100%;
+    top: 80px;
+    flex-direction: column;
+    background-color: #fff;
+    width: 100%;
+    padding: 1rem 0;
+    text-align: center;
+    gap: 0;
+    transition: left 0.3s ease-in-out;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .navlist.active {
+    left: 0;
+  }
+
+  .navitem {
+    margin: 16px 0;
+  }
+
+  .hero {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  .hero-text {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    gap: 10px;
+    text-align: left;
+    align-items: flex-start;
+    z-index: 2;
+  }
+
+  .hero-text span {
+    font-size: 1.2rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2.6rem;
+    margin-right: 7%;
+  }
+
+  .hero-text p {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .capture-banner {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .capture-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    position: absolute;
+  }
+}
+
+.fade-in-element {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-element.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
